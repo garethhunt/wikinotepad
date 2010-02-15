@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE overlay SYSTEM "chrome://wikinotepad/locale/wikinotepad.dtd">
+<overlay id="wikiNotepadOverlay"
+    xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+       
+    <!-- <script src="chrome://wikinotepad/content/wikinotepad.js" type="application/javascript"/>
+    <script type="application/javascript">
+        window.addEventListener("load", function() { WikiNotepad.init(); }, false);
+    </script> -->
+
+  <menupopup id="viewSidebarMenu">
+    <menuitem key="key_openWikiNotepad" observes="viewWikiNotepad"/>
+  </menupopup>
+  
+  <keyset id="mainKeyset">
+    <key id="key_openWikiNotepad" command="viewWikiNotepad"
+         key="&wikinotepad.open.commandkey;" 
+         modifiers="&wikinotepad.open.modifierskey;" />
+  </keyset>
+  
+  <broadcasterset id="mainBroadcasterSet"> 
+    <broadcaster id="viewWikiNotepad" 
+                 label="&wikinotepad.title;"
+                 autoCheck="false"
+                 type="checkbox"
+                 group="sidebar"
+                 sidebarurl="chrome://wikinotepad/content/wikinotepad.xul"
+                 sidebartitle="&wikinotepad.title;"
+                 oncommand="toggleSidebar('viewWikiNotepad');" />
+  </broadcasterset>
+</overlay>

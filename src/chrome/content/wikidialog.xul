@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css" ?>
+<?xml-stylesheet href="chrome://browser/skin/browser.css" type="text/css" ?>
+<?xml-stylesheet href="chrome://wikinotepad/skin/wikinotepad.css" type="text/css"?>
+<!DOCTYPE page SYSTEM "chrome://wikinotepad/locale/wikinotepad.dtd">
+
+<dialog id="wikiNotepadDialog" title="Wiki Dialog (Make into a locale property)"
+    onload="init()"
+    xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+    buttons="accept,cancel"
+    buttonlabelcancel="Cancel"
+    buttonlabelaccept="Add"
+    ondialogaccept="return doOK()"
+    ondialogcancel="window.close()"
+    height="200"
+    width="300">
+	
+    <script type="application/javascript"><![CDATA[
+      var wiki = null;
+
+      function init() {
+        wiki = window.arguments[0];
+	if (wiki.name != null) {
+	  document.getElementById("name").value = wiki.name;
+	}
+        if (wiki.root != null) {
+          document.getElementById("root").value = wiki.root;
+        }
+        // TODO Do some more logic to change the title of the button and dialog title
+      }
+      
+      function doOK() {
+        var name = document.getElementById("name").value;
+	var root = document.getElementById("root").value;
+	var newWiki = {name: null, root: null};
+
+        if (!name || name.trim().length == 0) {
+          alert("Wiki name must be specified");
+          return false;
+        } else {
+          newWiki.name = name.trim();
+        }
+
+        if (!root || root.trim().length == 0) {
+          alert("Wiki root path must be specified");
+          return false;
+        } else {
+          newWiki.root = root.trim();
+        }
+
+        wiki.name = newWiki.name;
+        wiki.root = newWiki.root;
+        return true;
+      }
+
+      function selectRootDir() {
+        var nsIFilePicker = Components.interfaces.nsIFilePicker;
+	var fp = Components.classes["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
+	fp.init(window, "Select the root directory for your wiki", nsIFilePicker.modeGetFolder);
+
+	var rd = fp.show();
+
+	if (rd == nsIFilePicker.returnOK) {
+          document.getElementById("root").value = fp.file.path;
+	}
+      }
+    ]]></script>
+
+    <command id="select-root-dir" oncommand="selectRootDir()"/>
+    
+    <hbox flex="1"> 
+      <vbox flex="1">
+        <label control="name" value="Name"/>
+        <label control="root" value="Root"/>
+      </vbox>
+      <vbox flex="1">
+        <textbox id="name"/>
+        <hbox>
+          <textbox id="root" readonly="true"/>
+          <button label="Browse..." command="select-root-dir"/>
+	</hbox>
+      </vbox>
+    </hbox>
+</dialog>

@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css" ?>
+<?xml-stylesheet href="chrome://browser/skin/browser.css" type="text/css" ?>
+<!DOCTYPE page SYSTEM "chrome://wikinotepad/locale/wikinotepad.dtd">
+
+<wizard id="wikiNotepadWizard" title="&wikinotepad.title;"
+    onload="WikiNotepadWizard.init()"
+    xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+    <script src="chrome://wikinotepad/content/wizard.js" type="application/javascript"/>
+
+    <wizardpage pageid="step1">
+    	<description>Enter a name and then select a directory in which to create your wiki.</description>
+    	<label value="Enter Wiki Name:"/>
+    	<textbox id="wikiName" onkeyup="WikiNotepadWizard.step1CanAdvance()"/>
+    	<label value="Select Root Directory:"/>
+    	<hbox>
+            <textbox id="rootDir" flex="1" onkeyup="WikiNotepadWizard.step1CanAdvance()" readonly="true"/>
+      	    <button label="&wikinotepad.filepicker.label;" oncommand="WikiNotepadWizard.selectRoot()"/>
+    	</hbox>
+    	<spacer flex="1"/>
+    </wizardpage>
+
+  <wizardpage onpageshow="WikiNotepadWizard.step2Show()" pageid="step2">
+    <description>Summary of your Wiki configuration.  Click Next to create, or Back to modify settings.</description>
+    <separator/>
+    <label value="Wiki Name:"/>
+    <label id="summaryWikiName"/>
+    <label value="Root Directory:"/>
+    <label id="summaryRootDir"/>
+  </wizardpage>
+
+  <wizardpage onpageshow="WikiNotepadWizard.step3Show()" onpagerewound="return WikiNotepadWizard.step3Rewind()" pageid="step3">
+    <description>Creating your wiki...</description>
+    <separator/>
+    <description id="wikiCreateImageProgress"> </description>
+    <description id="wikiCreateHomepageProgress"> </description>
+    <separator/>
+    <description id="wikiCreateComplete"> </description>
+    <description hidden="true" id="defaultContent">This is the default content.
+
+    This is line 2 of the default content</description>
+  </wizardpage>
+
+  <wizardpage pageid="step4">
+    <description>Congratulations.  Your new Wiki has been created.  Click Finish to start using your Wiki</description>
+  </wizardpage>
+</wizard>

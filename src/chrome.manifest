@@ -1,0 +1,6 @@
+content		wikinotepad	chrome/content/
+locale		wikinotepad	en-US	chrome/locale/en-US/
+resource	wikinotepad	resources/
+skin		wikinotepad	classic/1.0	chrome/skin/
+overlay		chrome://browser/content/browser.xul	chrome://wikinotepad/content/firefoxOverlay.xul
+

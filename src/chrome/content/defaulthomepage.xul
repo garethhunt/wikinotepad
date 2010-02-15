@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css" ?>
+<?xml-stylesheet href="chrome://browser/skin/browser.css" type="text/css" ?>
+<!DOCTYPE page SYSTEM "chrome://wikinotepad/locale/wikinotepad.dtd">
+
+<page id="wnpDefaultHomePage" title="&wikinotepad.title;"
+  xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" >
+<vbox flex="1">
+    <description>Click the button below to create your personal wiki.</description>
+    <hbox>
+      <button id="createWikiBtn" label="&wikinotepad.create.wiki.label;" oncommand="WikiNotepad.openCreateWikiWizard()"/>
+      <spacer flex="1"/>
+    </hbox>
+  </vbox>
+</page>

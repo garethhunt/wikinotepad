@@ -1,0 +1,8 @@
+<!ENTITY wikinotepad.title "Wiki Notepad">
+<!ENTITY wikinotepad.open.commandkey "E">
+<!ENTITY wikinotepad.open.modifierskey "shift accel">
+<!ENTITY wikinotepad.filepicker.label "Browse...">
+<!ENTITY wikinotepad.create.wiki.label "Create Wiki">
+
+<!ENTITY wikinotepad.manage.title "Manage Wikis">
+
