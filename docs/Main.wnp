@@ -1,0 +1,17 @@
+==To-do==
+
+* User interface
+** Wiki creation and management
+** Content editing
+** Images reference and upload
+
+* Preferences
+** Manage CSS
+** Manage interwiki links
+
+* Documentation
+** Provide a reference to CreoleWiki 1.0
+
+===Manage CSS===
+
+The user should be able to modify the CSS stylesheet to customize the wiki look and feel.
