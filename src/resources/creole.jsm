@@ -90,7 +90,6 @@ Parse.Simple.Base.Rule.prototype = {
 
         var target;
         if (this.tag) {
-            dump("this.tag 1: " + this.tag + "\n");
             if (options && options.builder == "e4x") {
                 target = <{this.tag}></{this.tag}>
             } else {
@@ -107,12 +106,9 @@ Parse.Simple.Base.Rule.prototype = {
             }
             this.apply(target, data, options);
         }
-        dump("target 2: " + target + "\n")
 
         if (this.attrs) {
             for (var i in this.attrs) {
-                dump("target 3: " + target + "\n")
-                dump("i: " + i + ", " + this.attrs[i] + "\n");
                 // todo Need to work out what to do with this method and determine its purpose
                 if (options && options.builder == "e4x") {
                     target.@[i] = this.attrs[i];
