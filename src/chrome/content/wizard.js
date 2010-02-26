@@ -101,7 +101,19 @@ var WikiNotepadWizard = {
 	return true;
     },
 
+    step4Show: function () {
+        if (this.restart) {
+	    this.WikiNotepad.addWiki(this.wikiName.value, this.rootDir.value);
+	}
+    },
+
     finish: function () {
+	// Open the main page of the wiki in the browser window
+	if (document.getElementById("openOnFinish").checked) {
+          // Get the wiki that was just added
+          var wiki = this.WikiNotepad.wikis[this.WikiNotepad.wikis.length-1];
+	  this.WikiNotepad.openWiki(wiki);
+	}
 	return true;
     }
 };

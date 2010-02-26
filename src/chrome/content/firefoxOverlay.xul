@@ -4,11 +4,6 @@
 <overlay id="wikiNotepadOverlay"
     xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
        
-    <!-- <script src="chrome://wikinotepad/content/wikinotepad.js" type="application/javascript"/>
-    <script type="application/javascript">
-        window.addEventListener("load", function() { WikiNotepad.init(); }, false);
-    </script> -->
-
   <menupopup id="viewSidebarMenu">
     <menuitem key="key_openWikiNotepad" observes="viewWikiNotepad"/>
   </menupopup>

@@ -7,16 +7,20 @@
 <dialog id="editWikiNotepadPage" title="&wikinotepad.manage.title;"
     onload="WikiNotepadEditPage.init()"
     xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-    buttons="accept"
-    buttonlabelaccept="Done"
-    ondialogaccept="return true"
-    height="500"
+    buttons="accept,cancel"
+    buttonlabelaccept="Save"
+    ondialogaccept="return WikiNotepadEditPage.saveContent()"
+    height="650"
     width="800">
 	
     <script src="chrome://wikinotepad/content/editwikipage.js" type="application/javascript"/>
 
     <hbox flex="1"> 
+	<image src="images/creole_cheat_sheet.png" width="340" height="608"/>
+	<splitter id="helpSplitter" state="collapsed" collapse="before" resizebefore="closest" resizeafter="closest" tooltiptext="Show help">
+	    <grippy/>
+	</splitter>
         <textbox id="wikinotepadTextbox" multiline="true" oninput="WikiNotepadEditPage.textChanged(this)" flex="1"/>
-        <browser id="wikinotepadPreview" flex="1"/>
+	<browser id="wikinotepadPreview" flex="2"/>
     </hbox>
 </dialog>

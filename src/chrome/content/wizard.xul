@@ -5,6 +5,7 @@
 
 <wizard id="wikiNotepadWizard" title="&wikinotepad.title;"
     onload="WikiNotepadWizard.init()"
+    onwizardfinish="WikiNotepadWizard.finish()"
     xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
     <script src="chrome://wikinotepad/content/wizard.js" type="application/javascript"/>
@@ -42,7 +43,9 @@
     This is line 2 of the default content</description>
   </wizardpage>
 
-  <wizardpage pageid="step4">
+  <wizardpage onpageshow="WikiNotepadWizard.step4Show()" pageid="step4">
     <description>Congratulations.  Your new Wiki has been created.  Click Finish to start using your Wiki</description>
+    <separator/>
+    <checkbox id="openOnFinish" label="Open the wiki on Finish"/>
   </wizardpage>
 </wizard>

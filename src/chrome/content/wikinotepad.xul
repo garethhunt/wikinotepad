@@ -10,24 +10,24 @@
 
     <script src="chrome://wikinotepad/content/wikinotepad.js" type="application/javascript"/>
 
+    <command id="wikinotepad-edit-page" oncommand="WikiNotepad.editWikiPage()"/>
     <command id="wikinotepad-manage-wikis" oncommand="WikiNotepad.openManageWikis()"/>
 
     <toolbar id="wikinotepad-toolbar">
         <toolbarbutton label="Manage Wikis" command="wikinotepad-manage-wikis"/>
         <toolbarbutton label="Change Wiki Root"/>
-        <toolbarbutton label="Edit This Page"/>
+        <toolbarbutton label="Edit This Page" command="wikinotepad-edit-page"/>
     </toolbar>
   
     <vbox flex="1">
-        <vbox id="nocontent">
+	    <vbox id="wikinotepadNoContent">
 	    <description>Click the button below to create your personal wiki.</description>
 	    <hbox>
 	        <button id="createWikiBtn" label="&wikinotepad.create.wiki.label;" oncommand="WikiNotepad.openCreateWikiWizard()"/>
-	        <spacer flex="1"/>
+		<spacer flex="1"/>
+		<!-- List of available wikis for user to choose from -->
 	    </hbox>
         </vbox>
-        <browser id="wikiBrowser" flex="1"/>
-        <textbox id="wikiEdit" multiline="true" flex="1"/>
-        <browser id="wikiPreview" flex="1"/>
+	<browser id="wikinotepadBrowser" flex="1"/>
     </vbox>
 </page>

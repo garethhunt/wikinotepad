@@ -19,8 +19,10 @@ var WikiNotepad = {
         // Load the configuration file and initialize the configuration
         this.loadConfig();
 
-	// todo Determine which wiki is active
-	// todo Load the active wiki main page into the wikibrowser
+	// Determine which wiki is active and load it into the browser
+	if (this.selectedWiki && this.selectedWiki.root && this.selectedWiki.root.length > 0) {
+            this.openWiki(this.selectedWiki);
+	}
     },
 
     loadConfig: function () {
@@ -65,10 +67,14 @@ var WikiNotepad = {
         }
 
         // Process the configuration XML
-	var wikiList = config.wikis.wiki;
+	//var wikiList = config.wikis.wiki;
 
-        for (var i = 0; i < wikiList.length(); i++) {
+        for (var i = 0; i < config.wikis.wiki.length(); i++) {
 	    this.addWiki(config.wikis.wiki[i].name.toString(), config.wikis.wiki[i].root.toString());
+	    if (config.wikis.wiki[i].@selected && config.wikis.wiki[i].@selected == "true") {
+                // If this is the selected wiki, set it
+                this.selectedWiki = this.wikis[this.wikis.length-1];
+	    }
 	}
     },
 
@@ -81,6 +87,10 @@ var WikiNotepad = {
 	        <name>{this.wikis[i].name}</name>
 	        <root>{this.wikis[i].root}</root>
 	    </wiki>;
+
+	    if (this.selectedWiki && this.wikis[i] == this.selectedWiki) {
+                wk.@selected="true";
+            }
 
 	    this.wikinotepad.wikis.appendChild(wk);
         }
@@ -105,6 +115,20 @@ var WikiNotepad = {
 	    root: root
 	};
 	this.wikis[this.wikis.length] = w;
+    },
+
+    openWiki: function (wiki) {
+        // Load the wiki Main page in the wiki browser
+	// todo Make the Main.wnp a variable
+        var uri = "file:///" + wiki.root + "/Main.wnp";
+        document.getElementById("wikinotepadBrowser").loadURI(uri);
+        // Hide the default content and wiki editing controls
+        document.getElementById("wikinotepadNoContent").style.display = "none";
+        this.selectedWiki = wiki;
+    },
+
+    editWikiPage: function() {
+        window.openDialog("chrome://wikinotepad/content/editwikipage.xul", "wikiNotepadEditPage", "resizable,dialog,centerscreen,modal", this, document.getElementById("wikinotepadBrowser"));
     },
 
     openCreateWikiWizard: function () {
